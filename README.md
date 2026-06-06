@@ -40,7 +40,7 @@ Step-by-step instructions for Claude...
 .
 ├── _template/           # copy this to start a new skill
 ├── hello-skill/         # a worked example skill
-├── safe-optimize/       # make code faster while proving behavior is unchanged
+├── whetstone/           # make code faster while proving behavior is unchanged
 ├── scripts/
 │   └── validate_skills.py
 └── .github/workflows/   # CI validation

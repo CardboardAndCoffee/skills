@@ -1,13 +1,13 @@
 ---
-name: safe-optimize
+name: whetstone
 description: Make a hot function, method, or query faster while proving it still behaves identically to the original — via differential testing against a frozen copy under an explicit equivalence contract, gated on a deterministic proxy and confirmed on a held-out benchmark. Use when the user asks to speed up / micro-optimize / make code faster without changing its behavior. Fails closed on code it cannot verify (concurrency, nondeterminism, unpinned side effects).
 ---
 
-# Safe Optimize
+# Whetstone
 
 Optimize code for **speed only**, autonomously, but only where you can *prove*
 the faster version is behaviorally indistinguishable from the original. The
-discipline (codename "Whetstone"): a performance task has a deterministic oracle
+Whetstone discipline: a performance task has a deterministic oracle
 a prose task never had — "did it get faster" reduces to a benchmark, and "did it
 stay correct" reduces to "is it indistinguishable from the code that worked
 before." Both are machine-checkable, so the loop can grind and the human only

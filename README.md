@@ -81,6 +81,23 @@ This marketplace also re-publishes a curated third-party plugin:
 tracks his upstream and updates when he does. His repo is MIT-licensed; no files are
 vendored here, so his copyright/license stay with his repo.
 
+### Bundled MCP: Linear
+
+The `cardboard-skills` plugin bundles the official [Linear MCP
+server](https://linear.app/docs/mcp) (declared in `.mcp.json`), so installing the
+plugin gives Claude live access to your Linear workspace — list/create/update issues,
+read comments, move statuses, etc. After installing, run `/mcp` once to complete
+Linear's OAuth sign-in:
+
+```
+/mcp        # authenticate the "linear" server (OAuth, in-browser)
+```
+
+It's a hosted remote server (`https://mcp.linear.app/mcp`, OAuth 2.1) — **no API
+tokens are stored in this repo**; each user authenticates with their own Linear
+account. Working directly in *this* repo also picks up the same `.mcp.json` as a
+project-scoped server.
+
 ### Auto-install for a project (no manual commands)
 
 Commit this to a project's `.claude/settings.json`; teammates who trust the repo

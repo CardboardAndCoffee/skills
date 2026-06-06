@@ -39,7 +39,7 @@ Step-by-step instructions for Claude...
 ```
 .
 ├── _template/           # copy this to start a new skill
-├── harden-claude/       # post-session: improve project docs from what went wrong
+├── harden-claude/       # post-session: keep project docs lean & fresh from what went wrong
 ├── sharpen/             # make code faster while proving behavior is unchanged
 ├── write-a-tutorial/    # write a step-by-step, learn-by-doing walkthrough (+ interactive HTML)
 ├── scripts/

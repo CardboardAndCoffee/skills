@@ -40,6 +40,7 @@ Step-by-step instructions for Claude...
 .
 ├── _template/           # copy this to start a new skill
 ├── sharpen/             # make code faster while proving behavior is unchanged
+├── write-a-tutorial/    # write a step-by-step, learn-by-doing walkthrough (+ interactive HTML)
 ├── scripts/
 │   └── validate_skills.py
 └── .github/workflows/   # CI validation

@@ -1,4 +1,4 @@
-# Whetstone — reference
+# Sharpen — reference
 
 Detailed vocabulary and rationale, loaded when you need it. Distilled from the
 Whetstone design (CONTEXT.md, the ADRs, and the README).

@@ -1,9 +1,9 @@
 ---
-name: whetstone
+name: sharpen
 description: Make a hot function, method, or query faster while proving it still behaves identically to the original — via differential testing against a frozen copy under an explicit equivalence contract, gated on a deterministic proxy and confirmed on a held-out benchmark. Use when the user asks to speed up / micro-optimize / make code faster without changing its behavior. Fails closed on code it cannot verify (concurrency, nondeterminism, unpinned side effects).
 ---
 
-# Whetstone
+# Sharpen
 
 Optimize code for **speed only**, autonomously, but only where you can *prove*
 the faster version is behaviorally indistinguishable from the original. The

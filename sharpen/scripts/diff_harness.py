@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Differential-testing + benchmark harness for the pure, comparable case.
 
-This is the concrete, runnable core of the `whetstone` loop for Python
+This is the concrete, runnable core of the `sharpen` loop for Python
 targets whose equality relation is exact `==`:
 
   1. Oracle  — run a large volume of generated inputs through the Frozen Original
@@ -168,7 +168,7 @@ def _demo() -> None:
 
     verdict = evaluate(frozen_original, candidate, oracle_inputs, heldout_inputs)
 
-    print("whetstone differential harness — demo")
+    print("sharpen differential harness — demo")
     print("-" * 48)
     if verdict.counterexample is not None:
         ce = verdict.counterexample

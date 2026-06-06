@@ -22,7 +22,7 @@ Instructions for Claude.
 
 | Field         | Required | Notes |
 |---------------|----------|-------|
-| `name`        | yes      | Lowercase, hyphen-separated. **Must match the directory name.** |
+| `name`        | yes      | Lowercase, hyphen-separated. **Must match the directory name.** **Name skills as verbs** — what the skill *does* — so the invocation reads as an action: `/sharpen`, `/review`, `/summarize`, not `/sharpener` or `/reviewer`. |
 | `description` | yes      | The single most important field. Write it for *triggering*: state what the skill does and the situations where Claude should reach for it. Keep it under ~1024 characters. |
 
 ### Body
@@ -58,6 +58,7 @@ Lead with the trigger condition when you can ("Use when…").
 ## Checklist before committing
 
 - [ ] Directory name matches `name` in frontmatter.
+- [ ] `name` is a verb (an action the skill performs).
 - [ ] `description` says both *what* and *when*.
 - [ ] `SKILL.md` body is actionable and points to supporting files instead of
       inlining large content.

@@ -39,7 +39,6 @@ Step-by-step instructions for Claude...
 ```
 .
 ├── _template/           # copy this to start a new skill
-├── hello-skill/         # a worked example skill
 ├── sharpen/             # make code faster while proving behavior is unchanged
 ├── scripts/
 │   └── validate_skills.py
@@ -56,20 +55,20 @@ Skills are discovered from a few locations. To use a skill from this repo:
 
 ```bash
 mkdir -p ~/.claude/skills
-cp -r hello-skill ~/.claude/skills/
+cp -r sharpen ~/.claude/skills/
 # or symlink to keep it in sync with this repo:
-ln -s "$PWD/hello-skill" ~/.claude/skills/hello-skill
+ln -s "$PWD/sharpen" ~/.claude/skills/sharpen
 ```
 
 **Project-scoped (one repo, shared with your team via git):**
 
 ```bash
 mkdir -p .claude/skills
-cp -r /path/to/this/repo/hello-skill .claude/skills/
+cp -r /path/to/this/repo/sharpen .claude/skills/
 ```
 
 Claude Code picks up skills automatically and invokes them when a task matches
-the skill's `description`. You can also invoke one explicitly with `/hello-skill`.
+the skill's `description`. You can also invoke one explicitly with `/sharpen`.
 
 ## Adding a new skill
 

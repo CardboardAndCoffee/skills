@@ -8,6 +8,14 @@
       "name": "cardboard-skills",
       "source": "./",
       "description": "Reusable, project- and language-agnostic Claude Code skills: sharpen (prove-equivalent perf optimization), write-a-tutorial (step-by-step walkthroughs), harden-claude (lean post-session docs hardening)."
+    },
+    {
+      "name": "mattpocock-skills",
+      "source": {
+        "source": "github",
+        "repo": "mattpocock/skills"
+      },
+      "description": "Matt Pocock's (aihero.dev) Claude Code skills — TDD, diagnose, triage, to-issues, to-prd, handoff, zoom-out, and more. MIT-licensed; referenced from github.com/mattpocock/skills, not vendored, so it tracks his upstream."
     }
   ]
 }

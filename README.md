@@ -69,6 +69,18 @@ In any project, once per machine:
 /plugin install cardboard-skills@cardboard-skills
 ```
 
+This marketplace also re-publishes a curated third-party plugin:
+
+```
+/plugin install mattpocock-skills@cardboard-skills
+```
+
+`mattpocock-skills` is [Matt Pocock's skills](https://github.com/mattpocock/skills)
+(aihero.dev) — TDD, diagnose, triage, to-issues, to-prd, handoff, and more. It is
+**referenced, not copied**: the marketplace entry points at his GitHub repo, so it
+tracks his upstream and updates when he does. His repo is MIT-licensed; no files are
+vendored here, so his copyright/license stay with his repo.
+
 ### Auto-install for a project (no manual commands)
 
 Commit this to a project's `.claude/settings.json`; teammates who trust the repo

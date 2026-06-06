@@ -1,0 +1,10 @@
+{
+  "name": "cardboard-skills",
+  "description": "Reusable, project- and language-agnostic Claude Code skills.",
+  "version": "0.1.0",
+  "author": {
+    "name": "CardboardAndCoffee"
+  },
+  "homepage": "https://github.com/CardboardAndCoffee/skills",
+  "repository": "https://github.com/CardboardAndCoffee/skills"
+}

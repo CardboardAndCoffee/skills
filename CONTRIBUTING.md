@@ -5,7 +5,9 @@ guidelines.
 
 ## Anatomy
 
-Every skill is a directory with a `SKILL.md`:
+Skills live under `skills/` (the plugin convention). Start a new one by copying
+the root `_template/` into `skills/<name>/`. Every skill is a directory with a
+`SKILL.md`:
 
 ```markdown
 ---

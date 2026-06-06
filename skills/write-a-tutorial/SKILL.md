@@ -21,10 +21,14 @@ manual GUI/creative steps and follows this to learn how.
   default; if the repo keeps docs elsewhere (e.g. `docs/guides/`, `documentation/`, a wiki dir),
   match the existing layout instead.
 - **Interactive HTML** (optional but default) is *generated from* the Markdown — never hand-edited.
-  Build it with the bundled script (path is stable wherever the skill is installed):
+  Build it with the bundled `scripts/build_tutorial.py`, which sits next to this `SKILL.md`.
+  Resolve its path from the skill's own directory rather than hardcoding an install location —
+  when this skill runs as a plugin, that directory is `$CLAUDE_PLUGIN_ROOT/skills/write-a-tutorial`:
   ```
-  python3 .claude/skills/write-a-tutorial/scripts/build_tutorial.py <path>/<slug>.md
+  python3 "$CLAUDE_PLUGIN_ROOT/skills/write-a-tutorial/scripts/build_tutorial.py" <path>/<slug>.md
   ```
+  (If it's installed as a plain skill instead of via a plugin, use the `scripts/build_tutorial.py`
+  inside this skill's directory — e.g. `~/.claude/skills/write-a-tutorial/scripts/build_tutorial.py`.)
   It writes `<slug>.html` beside the source: a single offline file with a TOC sidebar,
   scrollspy, copy buttons, checkable task lists with saved progress, and a theme toggle.
   Title, kicker, and storage key are derived from the doc's first `# H1`. The script is

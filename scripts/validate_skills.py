@@ -53,8 +53,10 @@ def parse_frontmatter(text: str) -> dict[str, str] | None:
 
 
 def find_skill_dirs() -> list[Path]:
+    # Skills are bundled under skills/ (the plugin convention). The _template
+    # placeholder lives at the repo root and is intentionally not shipped.
     dirs = []
-    for skill_md in REPO_ROOT.glob("*/SKILL.md"):
+    for skill_md in REPO_ROOT.glob("skills/*/SKILL.md"):
         if skill_md.parent.name in EXEMPT_DIRS:
             continue
         dirs.append(skill_md.parent)
@@ -102,7 +104,7 @@ def validate_skill(skill_dir: Path) -> list[str]:
 def main() -> int:
     skill_dirs = find_skill_dirs()
     if not skill_dirs:
-        print("No skills found (looked for */SKILL.md).")
+        print("No skills found (looked for skills/*/SKILL.md).")
         return 0
 
     all_errors: list[str] = []

@@ -38,45 +38,78 @@ Step-by-step instructions for Claude...
 
 ```
 .
-├── _template/           # copy this to start a new skill
-├── harden-claude/       # post-session: keep project docs lean & fresh from what went wrong
-├── sharpen/             # make code faster while proving behavior is unchanged
-├── write-a-tutorial/    # write a step-by-step, learn-by-doing walkthrough (+ interactive HTML)
+├── .claude-plugin/
+│   ├── plugin.json      # makes this repo an installable plugin
+│   └── marketplace.json # lists the plugin so consumers can /plugin install it
+├── skills/              # the shippable skills (each is one directory)
+│   ├── harden-claude/   # post-session: keep project docs lean & fresh from what went wrong
+│   ├── sharpen/         # make code faster while proving behavior is unchanged
+│   └── write-a-tutorial/# write a step-by-step, learn-by-doing walkthrough (+ interactive HTML)
+├── _template/           # copy this to start a new skill (not shipped)
 ├── scripts/
 │   └── validate_skills.py
 └── .github/workflows/   # CI validation
 ```
 
-Each top-level directory containing a `SKILL.md` is a skill.
+Each directory under `skills/` containing a `SKILL.md` is a shippable skill.
 
-## Using these skills
+## Consuming these skills
 
-Skills are discovered from a few locations. To use a skill from this repo:
+This repo is both a **plugin** and a **plugin marketplace**, so other projects
+can install the skills and auto-update when this repo changes. (Availability is
+governed by this repo's GitHub visibility — it's private, so only accounts with
+access to it can install.)
 
-**Personal (all your projects):**
+### Install via the marketplace (recommended)
 
-```bash
-mkdir -p ~/.claude/skills
-cp -r sharpen ~/.claude/skills/
-# or symlink to keep it in sync with this repo:
-ln -s "$PWD/sharpen" ~/.claude/skills/sharpen
+In any project, once per machine:
+
+```
+/plugin marketplace add CardboardAndCoffee/skills
+/plugin install cardboard-skills@cardboard-skills
 ```
 
-**Project-scoped (one repo, shared with your team via git):**
+### Auto-install for a project (no manual commands)
 
-```bash
-mkdir -p .claude/skills
-cp -r /path/to/this/repo/sharpen .claude/skills/
+Commit this to a project's `.claude/settings.json`; teammates who trust the repo
+get the skills installed automatically:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "cardboard-skills": {
+      "source": { "source": "github", "repo": "CardboardAndCoffee/skills" },
+      "autoUpdate": true
+    }
+  },
+  "enabledPlugins": ["cardboard-skills@cardboard-skills"]
+}
 ```
 
-Claude Code picks up skills automatically and invokes them when a task matches
-the skill's `description`. You can also invoke one explicitly with `/sharpen`.
+With `"autoUpdate": true`, Claude Code refreshes from this repo at startup and
+updates the plugin to the latest version (prompting `/reload-plugins`). Push
+here → consumers get it next session.
+
+### Local dev (instant updates)
+
+While editing skills, clone the repo and symlink individual skills into your
+personal skills dir so changes show up without a release:
+
+```bash
+git clone https://github.com/CardboardAndCoffee/skills ~/src/skills
+ln -s ~/src/skills/skills/sharpen ~/.claude/skills/sharpen
+```
+
+`SKILL.md` edits take effect immediately; a `git pull` is reflected at once.
+
+Claude Code invokes a skill when a task matches its `description`; you can also
+run one explicitly, e.g. `/sharpen`.
 
 ## Adding a new skill
 
-1. Copy the template: `cp -r _template my-new-skill`
-2. Edit `my-new-skill/SKILL.md` — set `name` (matching the directory) and a
-   crisp `description`.
+1. Copy the template: `cp -r _template skills/my-new-skill`
+2. Edit `skills/my-new-skill/SKILL.md` — set `name` (matching the directory) and
+   a crisp `description`.
 3. Validate: `python scripts/validate_skills.py`
 4. Commit and push.
 

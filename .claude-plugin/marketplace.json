@@ -1,0 +1,13 @@
+{
+  "name": "cardboard-skills",
+  "owner": {
+    "name": "CardboardAndCoffee"
+  },
+  "plugins": [
+    {
+      "name": "cardboard-skills",
+      "source": "./",
+      "description": "Reusable, project- and language-agnostic Claude Code skills: sharpen (prove-equivalent perf optimization), write-a-tutorial (step-by-step walkthroughs), harden-claude (lean post-session docs hardening)."
+    }
+  ]
+}

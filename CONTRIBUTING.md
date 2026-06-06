@@ -45,6 +45,32 @@ budget freely on clear, imperative instructions. Good bodies tend to:
   tokens.
 - **`templates/`**: boilerplate the skill fills in.
 
+## Keep skills generic
+
+**A skill must be project-, language-, and stack-agnostic.** It encodes a
+reusable *technique*, not the specifics of any one repo. Anyone should be able to
+drop the skill into an unrelated project and have it work.
+
+Concretely, a skill must **not** hardcode:
+
+- **A specific project's layout** — file names, directory structure, or doc paths
+  that only exist in one repo (e.g. `docs/architecture.md`, `AGENTS.md`). Discover
+  structure at runtime, or take it as input, instead of assuming it.
+- **A specific language, framework, or toolchain** — don't bake in Rust/React/
+  Tauri/etc. assumptions. If a skill genuinely needs a runtime, make that a
+  plug-in point (e.g. a per-language adapter the skill calls), not a hardcoded
+  branch.
+- **Org- or product-specific names, services, or conventions.**
+
+When something genuinely varies per project or per language, push it behind a
+**seam** — ask the user, detect it, or read it from a config/template — rather
+than embedding one project's answer. Use placeholders (`<doc-path>`,
+`<test-command>`) in examples, not real paths from a private repo.
+
+> Rule of thumb: if a skill would need editing before it worked in a *different*
+> project, it isn't generic yet. Genericity lives in the skill; specifics are
+> inputs.
+
 ## Writing a good `description`
 
 This is what Claude matches against to decide whether to use the skill. Make it
@@ -59,6 +85,8 @@ Lead with the trigger condition when you can ("Use when…").
 
 - [ ] Directory name matches `name` in frontmatter.
 - [ ] `name` is a verb (an action the skill performs).
+- [ ] **Generic:** no hardcoded project layout, language, framework, or org-specific
+      names — would work as-is in an unrelated repo.
 - [ ] `description` says both *what* and *when*.
 - [ ] `SKILL.md` body is actionable and points to supporting files instead of
       inlining large content.

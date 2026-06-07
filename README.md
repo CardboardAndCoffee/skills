@@ -45,6 +45,8 @@ Step-by-step instructions for Claude...
 │   ├── harden-claude/   # post-session: keep project docs lean & fresh from what went wrong
 │   ├── sharpen/         # make code faster while proving behavior is unchanged
 │   └── write-a-tutorial/# write a step-by-step, learn-by-doing walkthrough (+ interactive HTML)
+├── agents/              # bundled subagents (deep-reasoner, quick-lookup)
+├── .mcp.json            # bundled MCP servers (Linear)
 ├── _template/           # copy this to start a new skill (not shipped)
 ├── scripts/
 │   └── validate_skills.py
@@ -97,6 +99,20 @@ It's a hosted remote server (`https://mcp.linear.app/mcp`, OAuth 2.1) — **no A
 tokens are stored in this repo**; each user authenticates with their own Linear
 account. Working directly in *this* repo also picks up the same `.mcp.json` as a
 project-scoped server.
+
+### Bundled agents
+
+The `cardboard-skills` plugin also ships two general-purpose subagents (in
+`agents/`), which Claude can delegate to automatically based on a task's needs:
+
+- **`deep-reasoner`** (Opus) — hard, multi-file reasoning: non-obvious bug
+  diagnosis, architectural trade-offs, invariant design, migration/concurrency
+  review. Returns analysis, not code (unless asked).
+- **`quick-lookup`** (Haiku) — cheap, mechanical lookups: find a file, locate a
+  symbol, list a module's exports, read a config field. Terse, read-only.
+
+Both are project-agnostic: they lean on whatever conventions your repo already
+documents (`CLAUDE.md`, `adr/`/`docs/`, README) rather than assuming a layout.
 
 ### Auto-install for a project (no manual commands)
 

@@ -134,6 +134,28 @@ ln -s ~/src/skills/skills/sharpen ~/.claude/skills/sharpen
 Claude Code invokes a skill when a task matches its `description`; you can also
 run one explicitly, e.g. `/sharpen`.
 
+## Recommended workflow
+
+The pieces in and around this marketplace are designed to compose into one loop.
+A typical pass:
+
+**Planning** — `PRD → grill it → /to-issues → grill each issue`
+
+Draft a PRD and interrogate it with Claude until it's tight. Run **`/to-issues`**
+(from `mattpocock-skills`) to break it into issues — which can land straight in
+**Linear** via the bundled MCP. Then grill each issue for edge cases before you
+start building.
+
+**Development** — `/triage → plan → /tdd → /simplify → PR`
+
+Use **`/triage`** to scope the work, have Claude draft a plan, execute with
+**`/tdd`**, tidy with **`/simplify`**, then open the PR.
+
+The `/…` steps come from the referenced **`mattpocock-skills`** plugin (TDD,
+triage, to-issues, to-prd, handoff, …); the **Linear MCP** ships with
+`cardboard-skills`. The grilling and plan-drafting steps are deliberately
+human-in-the-loop — keep them interactive rather than scripting the whole chain.
+
 ## Adding a new skill
 
 1. Copy the template: `cp -r _template skills/my-new-skill`

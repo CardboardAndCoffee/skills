@@ -114,6 +114,43 @@ The `cardboard-skills` plugin also ships two general-purpose subagents (in
 Both are project-agnostic: they lean on whatever conventions your repo already
 documents (`CLAUDE.md`, `adr/`/`docs/`, README) rather than assuming a layout.
 
+#### Recommended model setup: Sonnet by default, escalate per task
+
+These agents are built for a **tiered-model** workflow: run your session on
+Sonnet, and let the two agents move work up or down a tier only when the task
+calls for it.
+
+- **Main session → Sonnet** — your everyday model.
+- **`deep-reasoner` → Opus** — pinned via `model: opus` in its frontmatter, so it
+  runs on Opus *even when your session is Sonnet*.
+- **`quick-lookup` → Haiku** — pinned via `model: haiku`, so mechanical lookups
+  drop to the cheapest tier.
+
+A subagent's `model` always overrides the session model when it runs, so the
+escalation is automatic — and so is the *routing*: Claude reads each agent's
+`description` and delegates when a task matches, with no flags or config from you.
+
+The one piece this plugin **cannot** set for you is the session default. A
+plugin's bundled `settings.json` only supports the `agent` and
+`subagentStatusLine` keys — never `model` — so the default model is always the
+consumer's choice. Set it yourself with a single line:
+
+```jsonc
+// ~/.claude/settings.json  (all your projects)
+// — or <project>/.claude/settings.json for just one
+{ "model": "sonnet" }
+```
+
+(Or `/model sonnet` for a one-off session.) With that line in place you get the
+full picture below; without it, the agents still escalate and de-escalate correctly —
+they just branch off whatever model your session happens to be on.
+
+| Layer | Model | Set by |
+| --- | --- | --- |
+| Main session | **Sonnet** | your `settings.json` (`"model": "sonnet"`) |
+| `deep-reasoner` (needs real thinking) | **Opus** | agent frontmatter (shipped) |
+| `quick-lookup` (mechanical lookups) | **Haiku** | agent frontmatter (shipped) |
+
 ### Auto-install for a project (no manual commands)
 
 Commit this to a project's `.claude/settings.json`; teammates who trust the repo

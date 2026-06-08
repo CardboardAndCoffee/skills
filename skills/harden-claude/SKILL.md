@@ -39,7 +39,7 @@ context bloat.
 Map where *this* project keeps durable knowledge — don't assume a layout — and
 **measure it**, because size is the forcing function for the rest of the run.
 
-- Knowledge files + sizes: !`wc -l CLAUDE.md AGENTS.md README* .cursorrules docs/* doc/* documentation/* 2>/dev/null`
+- Knowledge files + sizes: !`bash -c 'wc -l CLAUDE.md AGENTS.md README* .cursorrules docs/* doc/* documentation/* 2>/dev/null'`
 - Recent commits: !`git log --oneline -10`
 
 Also look for `.github/copilot-instructions.md` or a wiki dir if the above finds
